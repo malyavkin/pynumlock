@@ -1,7 +1,7 @@
 import ctypes
 import threading
 
-from common import keys
+from common import KEYS
 
 user32 = ctypes.WinDLL("User32.dll")
 
@@ -23,6 +23,6 @@ class State:
     @staticmethod
     def get_locks_state():
         status = 0
-        for i, key in enumerate(keys):
+        for i, key in enumerate(KEYS):
             status |= (1 if user32.GetKeyState(key['keycode']) else 0) << i
         return status
